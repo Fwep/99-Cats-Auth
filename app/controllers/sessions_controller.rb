@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
   
   def new
     @user = User.new
-    @test = "hello"
     render :new
   end
 
@@ -20,7 +19,7 @@ class SessionsController < ApplicationController
       @user = User.new(
         username: params[:session][:username],
         password: params[:session][:password]
-      )
+      ) # This is so the HTML input doesn't get reset on failure
       render :new
     end
   end
@@ -28,7 +27,7 @@ class SessionsController < ApplicationController
   def destroy
     if current_user
       current_user.reset_session_token!
-      session[:session_token]
+      session[:session_token] = nil
       redirect_to cats_url
     end
   end
