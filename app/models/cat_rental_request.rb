@@ -12,7 +12,6 @@
 #
 
 class CatRentalRequest < ApplicationRecord
-  # .freeze renders constants immutable
   STATUS_STATES = %w(APPROVED DENIED PENDING).freeze
 
   validates :cat_id, :end_date, :start_date, :status, presence: true
